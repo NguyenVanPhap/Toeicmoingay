@@ -19,8 +19,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javafx.geometry.Pos;
-
 @Entity
 @Table(name = "comment_post")
 public class CommentPost {
