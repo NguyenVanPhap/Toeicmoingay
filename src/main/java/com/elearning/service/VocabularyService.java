@@ -8,7 +8,7 @@ import com.elearning.entities.Grammar;
 import com.elearning.entities.Vocabulary;
 
 public interface VocabularyService {
-	List<Vocabulary> findAll();
+    List<Vocabulary> findAll();
 
     void save(Vocabulary vocabulary);
 
@@ -21,8 +21,8 @@ public interface VocabularyService {
     List<Vocabulary> getVocabulary(int id);
 
     List<Vocabulary> searchListVocabulary(String search);
-    
-    //List<BaiTapTuVung> getAllBaiTapTuVung();
+
+    // List<BaiTapTuVung> getAllBaiTapTuVung();
 
     Vocabulary getVocabId(int id);
 

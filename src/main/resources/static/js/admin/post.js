@@ -30,15 +30,15 @@ $(document).ready(function() {
 				var trHTML = "";
 				$.each(data.object.content, function(i, objPost) {
 
-					trHTML += '<tr><td class= "center">' + objPost.id + '</td>'
+					trHTML += '<tr><td class= "center">' + objPost.postId + '</td>'
 						+ '<td class= "center">' + objPost.name + '</td>'
 
 
-						+ '<td class = "center"> <a id="edit.' + objPost.id + ' "'
+						+ '<td class = "center"> <a id="edit.' + objPost.postId + ' "'
 
 						+ 'class="yellow editBaiPost"><button class="btn btn-warning">Cập nhật</button></a> '
 
-						+ ' <a id="delete.' + objPost.id + ' "'
+						+ ' <a id="delete.' + objPost.postId + ' "'
 
 						+ 'class="red deleteBaiPost" ><button class="btn btn-danger">Xóa</button></a> </td>'
 
@@ -99,11 +99,13 @@ $(document).ready(function() {
 
 		var formData = new FormData();
 		var name = $('#PostName').val();
+		var contentMarkdown = editorData; //get from textarea markdown
 		var contentHTML = editorData;
 		file_image = $('#file_imagePost')[0].files[0];
-		formData.append("fileImage", file_image);
-		formData.append("postName", name);
 
+		formData.append("file_image", file_image);
+		formData.append("PostName", name);
+		formData.append("contentMarkdown", contentMarkdown);
 		formData.append("contentHtml", contentHTML);
 
 		$.ajax({
@@ -169,9 +171,9 @@ $(document).ready(function() {
 
 				var modal = $('#PostModal');
 				$('#PostModal #PostModalId').val(idPost);
-				modal.find('.modal-body #PostName').val(data.object.postName);
+				modal.find('.modal-body #PostName').val(data.object.name);
 				modal.find('.modal-header #titleModal').text("Cập nhật ");
-				modal.find('.modal-body #previewImage').attr('src', data.object.filePath);
+				modal.find('.modal-body #previewImage').attr('src', data.object.file_image);
 				modal.find('.modal-body #myckeditor').val(data.object.contentHTML);
 				CKEDITOR.instances['myckeditor'].setData(data.object.contentHTML);
 				console.log(data.object.contentHTML);
@@ -196,18 +198,19 @@ $(document).ready(function() {
 
 			if ($('#file_imagePost').get(0).files.length != 0) {
 				file_image = $('#file_imagePost')[0].files[0];
-				formData.append("fileImage", file_image);
+				formData.append("file_image", file_image);
 			}
 			else {
 				file_image = "test.jpg";
-				formData.append("fileImage", "test.jpg");
+				formData.append("file_image", "test.jpg");
 			}
 
 			/*var file_image = $('#file_imagePost')[0].files[0];
 			formData.append("fileImage", file_image);*/
 			var editorData = CKEDITOR.instances['myckeditor'].getData();
 			formData.append("idPost", idPost);
-			formData.append("postName", name);
+			formData.append("PostName", name);
+			formData.append("contentMarkdown", editorData);
 			formData.append("contentHtml", editorData);
 			$.ajax({
 				data: formData,

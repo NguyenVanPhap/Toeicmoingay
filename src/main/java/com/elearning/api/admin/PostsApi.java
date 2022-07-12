@@ -59,40 +59,29 @@ public class PostsApi {
 
 	@PostMapping(value = "add", consumes = "multipart/form-data")
 	@ResponseBody
-	public ResponseEntity<Object> add(@RequestParam("postName") String name,
+	public ResponseEntity<Object> add(@RequestParam("PostName") String name,
+			@RequestParam("contentMarkdown") String contentMarkdown,
 			@RequestParam("contentHtml") String contentHtml,
-			@RequestPart(value = "fileImage", required = false) MultipartFile file_image) {
-		// List<String> response = new ArrayList<String>();
+			@RequestPart(value = "file_image", required = false) MultipartFile file_image) {
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		Post objPost = new Post();
 		ApiRes<Object> apiRes = new ApiRes<Object>();
-		// ResponseEntity.ok(postService.save(objPost));
 		postService.save(objPost);
 		try {
-			// if (file_image != null) {
-			// Path pathImage = Paths.get(rootDirectory + "/static/file/images/post/" + ""
-			// + objPost.getId() + "." + file_image.getOriginalFilename());
-			// String localPath = "/static/file/images/post/" + "" + objPost.getId() + "."
-			// + file_image.getOriginalFilename();
-			// file_image.transferTo(new File(pathImage.toString()));
-			// objPost.setFileName(file_image.getOriginalFilename());
-			// objPost.setFilePath(localPath);
-			// }
+			// save file upload to local folder
 			Path pathImage = Paths.get(rootDirectory, "/static/file/images/post/" + ""
-					+ objPost.getId() + "." + file_image.getOriginalFilename());
+					+ objPost.getPostId() + "." + file_image.getOriginalFilename());
 			file_image.transferTo(new File(pathImage.toString()));
-			objPost.setFileName(file_image.getOriginalFilename());
-			// objPost.setFilePath(localPath);
-
+			// objPost.setImage(objPost.getId() + "." + file_image.getOriginalFilename());
 		} catch (Exception e) {
 			apiRes.setError(true);
 			apiRes.setErrorReason(e.getMessage());
 			return ResponseEntity.ok(apiRes);
 		}
-		System.out.println("ig:" + objPost.getId());
 		objPost.setName(name);
+		objPost.setImage(objPost.getPostId() + "." + file_image.getOriginalFilename());
+		objPost.setContentMarkDown(contentMarkdown);
 		objPost.setContentHTML(contentHtml);
-		System.out.println("name add post:" + objPost.getName());
 		return ResponseEntity.ok(postService.save(objPost));
 	}
 
@@ -139,7 +128,8 @@ public class PostsApi {
 	@PostMapping(value = "update")
 	@ResponseBody
 	public ResponseEntity<Object> update(@RequestParam("idPost") int id,
-			@RequestParam("postName") String name,
+			@RequestParam("PostName") String name,
+			@RequestParam("contentMarkdown") String contentMarkdown,
 			@RequestParam("contentHtml") String contentHtml,
 			@RequestPart(value = "fileImage", required = false) MultipartFile file_image) {
 		// List<String> response = new ArrayList<String>();
@@ -150,12 +140,9 @@ public class PostsApi {
 		try {
 			if (file_image != null) {
 				Path pathImage = Paths.get(rootDirectory + "/static/file/images/post/" + ""
-						+ objPost.getId() + "." + file_image.getOriginalFilename());
-				String localPath = "/static/file/images/post/" + "" + objPost.getId() + "."
-						+ file_image.getOriginalFilename();
+						+ objPost.getPostId() + "." + file_image.getOriginalFilename());
 				file_image.transferTo(new File(pathImage.toString()));
-				objPost.setFileName(file_image.getOriginalFilename());
-				objPost.setFilePath(localPath);
+				// objPost.setImage(file_image.getOriginalFilename());
 			}
 		} catch (Exception e) {
 			apiRes.setError(true);
@@ -163,7 +150,9 @@ public class PostsApi {
 			return ResponseEntity.ok(apiRes);
 		}
 		objPost.setName(name);
-		// System.out.println("name : " + objPost.getName());
+		// objPost.setImage(objPost.getPostId() + "." +
+		// file_image.getOriginalFilename());
+		objPost.setContentMarkDown(contentMarkdown);
 		objPost.setContentHTML(contentHtml);
 		return ResponseEntity.ok(postService.save(objPost));
 	}

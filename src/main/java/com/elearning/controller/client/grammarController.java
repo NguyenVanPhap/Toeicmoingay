@@ -47,9 +47,9 @@ public class grammarController {
 	@GetMapping("/listGrammar")
 	public String getPage(@RequestParam(defaultValue = "1") int page, Model model) {
 
-//		List<BaiGrammar> list = baigrammarService.getAllBaiGrammar();
-//
-//		model.addAttribute("listData", list);
+		// List<BaiGrammar> list = baigrammarService.getAllBaiGrammar();
+		//
+		// model.addAttribute("listData", list);
 
 		// default value lấy từ kết quả đầu tiên
 
@@ -88,7 +88,7 @@ public class grammarController {
 	}
 
 	@GetMapping("/detailGram")
-	public String DetalVocab(@RequestParam int idGram, Model model) {
+	public String DetailGram(@RequestParam int idGram, Model model) {
 
 		Grammar baigrammar = baigrammarService.getInfor(idGram);
 

@@ -2,37 +2,34 @@ $(document).ready(function() {
 	ajaxGetComment(1);
 	function ajaxGetComment(page) {
 		let searchParams = new URLSearchParams(window.location.search);
-		var grammarId = searchParams.get('idGram');
-		/*alert(grammarId);*/
-
+		var postId = searchParams.get('idPost');
+		
 		$.ajax({
 			type: "GET",
-			url: "/api/comment/grammar/id=" + grammarId + "?page=" + page,
+			url: "http://localhost:8080/api/comment/post/id=" + postId + "?page=" + page,
 			success: function(result) {
-				soCau = result.totalElements;
-				console.log(result);
 				var divCMT = "";
 				$.each(result.object, function(i, objres) {
 					divCMT += '<tr>'
-						+ '<td>'
-						+ '<div class = "row">'				
-						+ '<div class="col-md-2" style="padding: 10px;">'
+						+ '<td>'	
+						+ '<div class = "row">'			
+						+ '<div class="col-md-2 avatar" style="padding: 10px;">'
 						+ '<img class="circle" src="/static/images/avatardefault.jpg" alt="" width="50%" height="100%">'
 						+ '</div>'
 						+ '<div class="col-md-10 box">'
-						+ '<span id="name_member" class ="name-right">' 
-						+ '<b>' + objres.userName + '</b>' 
+						+ '<span id="name_member" class="name-right">' 
+						+ '<b>' + objres.userName + '</b>'
 						+ '<span class="date-left">'
-						+ '<small name="commentdategrammar">' + objres.commentDate + '</small>'
+						+ '<small name="commentDatePost">' + objres.commentDatePost + '</small>'
 						+ '</span>'
 						+ '</span>'
-						+ '<p id="contentgrammar" name="cmtgrammarcontent">' + objres.content + '</p>'						
+						+ '<p id="contentpost name="contentPost">' + objres.contentCmtPost + '</p>'
 						+ '</div>'
 						+ '</div>'
 						+ '<td>'
 						+ '<tr>'
 				});
-				$('#lstcommentgrammar').html(divCMT);
+				$('#lstcommentpost').html(divCMT);
 			},
 			error: function(e) {
 				alert("Error: ", e);
@@ -44,12 +41,12 @@ $(document).ready(function() {
 	var comment = {};
 	$('#btnComment').click(function(){
 		let searchParams = new URLSearchParams(window.location.search);
-		comment.grammarId = searchParams.get('idGram');
-		comment.content = $('#contentComment').val();
+		comment.postId = searchParams.get('idPost');
+		comment.contentCmtPost = $('#contentComment').val();
 		comment.userName = $('#name_member').val();
 		var commentObj = JSON.stringify(comment);
 		$.ajax({
-			url: "/api/comment/grammar/add-comment",
+			url: "http://localhost:8080/api/comment/post/add-comment",
 			method: 'POST',
 			data: commentObj,
 			contentType: 'application/json; charset = utf-8',

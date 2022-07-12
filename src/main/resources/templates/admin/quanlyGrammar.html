@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script th:src="@{/js/admin/quanLyGrammar.js}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -75,6 +76,13 @@
 								<label>Tên bài grammar</label> <input id="nameGrammar" class="form-control">
 
 							</div>
+							<div class="form-group col-md-6">
+								<label for="GrammarImage">Hình ảnh:</label>
+								<input type="file" title="Click to upload image" class="form-control"
+									id="file_imageGrammar" name="file_imageGrammar" accept="image/*">
+									<!-- onchange="showMyImage(this)" required /> -->
+								
+							</div>
 
 
 							<div class="form-group col-md-12">
@@ -95,10 +103,11 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
+	<script>
+		CKEDITOR.replace('myckeditor', {
+			height: "800px"
+		});
+	</script>
 </body>
 
 </html>

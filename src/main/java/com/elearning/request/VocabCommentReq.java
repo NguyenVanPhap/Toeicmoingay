@@ -3,14 +3,14 @@ package com.elearning.request;
 import java.util.Date;
 
 public class VocabCommentReq {
-    
-    private Integer vocabularyId;
 
-    private String contentVocabulary;
+	private Integer vocabularyId;
 
-    private Date time;
+	private String contentVocabulary;
 
-    public Integer getVocabularyId() {
+	private Date time;
+
+	public Integer getVocabularyId() {
 		return vocabularyId;
 	}
 

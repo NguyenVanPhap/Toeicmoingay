@@ -222,7 +222,7 @@ $(document).ready(function() {
 
 					divCauHoi += '</div>'
 						+ '<div class="span4" style="margin-left:0px; white-space: pre-line">'
-						+ '<span style="background-color:lightgoldenrodyellow">Giải thích:'
+						+ '<span style="background-color:lightgoldenrodyellow"> <b> Giải thích: </b>'
 						+ '<p style="background-color:lightgoldenrodyellow">'
 						+ cauHoi.ansExplain + '</p>'
 						+ '</span>'

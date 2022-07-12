@@ -40,17 +40,17 @@ public class PostService {
 		return apiRes;
 	}
 
-	public ApiRes<Object> getInfor(int id) {
-		ApiRes<Object> apiRes = new ApiRes<Object>();
-		try {
-			List<Post> lstpostss = blogRepo.findById(id);
-			apiRes.setObject(lstpostss.get(0));
-		} catch (Exception e) {
-			apiRes.setError(true);
-			apiRes.setErrorReason(e.getMessage());
-		}
-		return apiRes;
-	}
+	// public ApiRes<Object> getInfor(int id) {
+	// ApiRes<Object> apiRes = new ApiRes<Object>();
+	// try {
+	// List<Post> lstpostss = blogRepo.findById(id);
+	// apiRes.setObject(lstpostss.get(0));
+	// } catch (Exception e) {
+	// apiRes.setError(true);
+	// apiRes.setErrorReason(e.getMessage());
+	// }
+	// return apiRes;
+	// }
 
 	public ApiRes<Object> getList(int page, int size) {
 		ApiRes<Object> apiRes = new ApiRes<Object>();
@@ -101,7 +101,16 @@ public class PostService {
 		return apiRes;
 	}
 
-	public Post getPostId(int id){
+	public Post getPostId(int id) {
+		List<Post> lstPosts = blogRepo.findById(id);
+		return lstPosts.get(0);
+	}
+
+	public Page<Post> getPost(int page, int size) {
+		return blogRepo.findAll((PageRequest.of(page, size)));
+	}
+
+	public Post getInfor(int id) {
 		List<Post> lstPosts = blogRepo.findById(id);
 		return lstPosts.get(0);
 	}

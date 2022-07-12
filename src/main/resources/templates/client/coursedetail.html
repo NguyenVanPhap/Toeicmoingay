@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Chi tiết khóa học</title>
+	<title th:text="${course.getCourseName()}"></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script th:src="@{/js/jquery-1.js}"></script>
 
@@ -32,8 +32,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
-	<style type="text/css">
+		<style type="text/css">
 		.checked,
 		.price span {
 			color: #ff9f1a;
@@ -181,11 +180,35 @@
 			visibility: hidden;
 		}
 
-		.imageGrammar {
+		.imageCourse {
 			float: left;
 			height: 150px;
 			width: 250px;
 			margin-bottom: 25px;
+		}
+		.box{
+			box-shadow: 0 0 0 1px;
+			border-radius: 10px;
+			width: 90%;
+		}
+		.avatar{
+			width: 10%;
+		}
+		.name-right{
+
+		}
+		.box .date-left{
+			position: absolute;
+			top: 0px;
+			right: 0;
+			width: 110px;
+		}
+		.circle{
+			border: 1px #d4d4d4 solid;
+			/* padding: 7px; */
+			border-radius:50%;
+			-moz-border-radius:50%;
+			-webkit-border-radius:50%;
 		}
 	</style>
 	<script type="text/javascript">
@@ -193,16 +216,16 @@
 
 			var baseUrl = document.getElementById('baseUrl').value;
 			var xhttp;
-			var search = document.getElementById('searchGrammar').value;
+			var search = document.getElementById('searchCourse').value;
 
 			//remove special letters
 			var convertSearch = search.replace(/[^a-zA-Z0-9 ]/g, "");
 
 			var url;
 			if (!search == ' ') {
-				url = baseUrl + "/searchGrammar/" + convertSearch;
+				url = baseUrl + "/searchCourse/" + convertSearch;
 			}
-			else url = baseUrl + "/searchGrammar/all";
+			else url = baseUrl + "/searchCourse/all";
 
 
 			if (window.XMLHttpRequest) {
@@ -215,7 +238,7 @@
 			xhttp.onreadystatechange = function () {
 				if (xhttp.readyState == 4) {
 					var data = xhttp.responseText;
-					document.getElementById("resultsearchGrammar").innerHTML = data;
+					document.getElementById("resultsearchCourse").innerHTML = data;
 				}
 			}
 
@@ -246,13 +269,13 @@
 		</div>
 
 		<!-- /. PAGE TITLE-->
-		<div id="resultsearchGrammar">
+		<div id="resultsearchCourse">
 
 			<div class="row">
 				<div class="col-sm-9">
 					<div style="background-color: white;">
 
-						<h3 th:text="${course.getCourseName()}"></h3>
+						<h2 style="text-align: center; color: #b10021;" th:text="${course.getCourseName()}"></h2>
 
 						<hr>
 
@@ -362,6 +385,60 @@
 				</div>
 			</div>
 
+			<div class="row">
+
+			<th:block sec:authorize="isAnonymous()">
+				<form>
+					<fieldset>
+						<h3>Bình luận</h3>
+
+						<textarea class="form-control" rows="2" cols="100"
+							placeholder="Viết bình luận đánh giá về bài đăng này..." name="comment" disabled
+							style="text-align: left;">Đăng nhập để bình luận bài viết
+						</textarea>
+						<br>
+						<button type="button" class="btn btn-primary" disabled>Đăng
+							bình luận</button>
+					</fieldset>
+
+				</form>
+
+			</th:block>
+
+
+
+
+			<th:block sec:authorize="isAuthenticated()">
+				<!--  	<input type="hidden" id="user_id" name="user_id" value="${currentUser.id}"/> -->
+				<input type="hidden" id="id_bai_course" value="${courseid}" />
+
+				<div class="blog-spot">
+					<div>
+						<h3>Bình luận</h3>
+						<textarea id="contentComment" class="form-control" rows="2" cols="100" name="contentComment"
+							placeholder="Viết bình luận đánh giá về bài đăng này..."></textarea>
+
+					</div>
+					<br>
+					<div>
+						<button id="btnComment" type="button" class="btn btn-primary">Đăng
+							bình luận</button>
+					</div>
+				</div>
+			</th:block>
+			<!-- Nội dung commnetn -->
+			<h1 id="testajax"></h1>
+			</div>
+
+				<div class="row">
+					<div class="col-md-10">
+						<table class="table table-hover " id="tableCourse">
+							<tbody id="lstcommentcourse">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 
 
 
@@ -400,6 +477,7 @@
 	<!-- footer section -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.js"></script>
 	<script th:src="@{/js/client/coursedetail.js}"></script>
+	<script th:src="@{/js/client/commentcourse.js}"></script>
 </body>
 
 </html>

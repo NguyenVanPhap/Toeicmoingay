@@ -30,7 +30,7 @@ $(document).ready(function() {
 					}
 
 					baiDocRow += '<td>' + '<input type="hidden" value=' + baiDoc.id + '>'
-						+ '  <button class="btn btn-primary btnUpdateReadingExercise" >Cập nhật</button>'
+						// + '  <button class="btn btn-primary btnUpdateReadingExercise" >Cập nhật</button>'
 						+ '   <button class="btn btn-danger btnDeleteReadingExercise">Xóa</button></td>'
 					'</tr>';
 					$('.baiDocTable tbody').append(baiDocRow);

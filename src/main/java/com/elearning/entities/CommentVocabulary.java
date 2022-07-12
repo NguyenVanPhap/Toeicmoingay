@@ -22,44 +22,44 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "comment_tu_vung")
 public class CommentVocabulary {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
+	private Integer id;
 
-    @Column(name = "contentvocab")
-    private String contentVocabulary;
+	@Column(name = "contentvocab")
+	private String contentVocabulary;
 
-    @Column(name = "time")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+7")
-    private Date commentDateVocab;
+	@Column(name = "time")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+7")
+	private Date commentDateVocab;
 
-    private String userName;
+	private String userName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vocabularyid", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Vocabulary vocabulary;
-    
-    public Integer getId(){
-        return id;
-    }
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "vocabularyid", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
+	private Vocabulary vocabulary;
 
-    public void setId(Integer id){
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getContentVocabulary(){
-        return contentVocabulary;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setContentVocabulary(String contentVocabulary){
-        this.contentVocabulary = contentVocabulary;
-    }
+	public String getContentVocabulary() {
+		return contentVocabulary;
+	}
 
-    public Date getCommentDateVocab() {
+	public void setContentVocabulary(String contentVocabulary) {
+		this.contentVocabulary = contentVocabulary;
+	}
+
+	public Date getCommentDateVocab() {
 		return commentDateVocab;
 	}
 
@@ -85,15 +85,17 @@ public class CommentVocabulary {
 
 	@Override
 	public String toString() {
-		return "{"+ "\"idcomment\":" + "\"" + id + "\"" + "\"cmtgrammarcontent\":" + "\"" + contentVocabulary + "\"" + "," + "\"date\":" + "\"" + commentDateVocab + "\""
-				+ "," + "\"nguoidung\":" + "\"" + userName + "\"" + "\"grammar\":" + "\"" + vocabulary + "\"" + "}";
+		return "{" + "\"idcomment\":" + "\"" + id + "\"" + "\"cmtvocabcontent\":" + "\"" + contentVocabulary + "\""
+				+ "," + "\"date\":" + "\"" + commentDateVocab + "\""
+				+ "," + "\"nguoidung\":" + "\"" + userName + "\"" + "\"vocab\":" + "\"" + vocabulary + "\"" + "}";
 	}
 
 	public CommentVocabulary() {
 
 	}
 
-	public CommentVocabulary(Integer id, String contentVocabulary, Date commentDateVocab, String userName, Vocabulary vocabulary) {
+	public CommentVocabulary(Integer id, String contentVocabulary, Date commentDateVocab, String userName,
+			Vocabulary vocabulary) {
 		super();
 		this.id = id;
 		this.contentVocabulary = contentVocabulary;

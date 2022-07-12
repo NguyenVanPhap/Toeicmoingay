@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Luyện bài tập đọc - Part 6</title>
+	<title th:text="'LUYỆN ĐỌC -'+${readingExercise.name}"></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
@@ -47,6 +47,9 @@
 			/*same height as header*/
 			visibility: hidden;
 		}
+		.pagetitle{
+			text-align: center;
+		}
 	</style>
 </head>
 
@@ -58,7 +61,7 @@
 		<!-- /. PAGE TITLE-->
 		<div class="row">
 			<div class="col-sm-8" style="width: 20%">
-				<h4 class="pagetitle" th:text="'LUYỆN ĐỌC PART 6-'+${readingExercise.name}" id="idexerciseName"></h4>
+				<h4 class="pagetitle" th:text="'LUYỆN ĐỌC -'+${readingExercise.name}" id="idexerciseName"></h4>
 				<!--Blog Post-->
 				<div class="blog-post">
 

@@ -169,27 +169,7 @@
 					<br>
 				</div>
 				<div class="col-sm-3">
-					<div th:replace="client/include/sidebar::sidebar"> </div>
-					<!--<div class="side-bar" style="padding-left: 0px;height:100%">
-
-						<h5>DANH MỤC</h5>
-						
-						<table style="padding-left: 0px;height:100% ">
-							<tr>
-								<td style="width:5% ;background-color: gainsboro;"></td>
-								<td style="vertical-align:top">
-									<ul class="nav-list" style="">
-										<li class="myli" ><a href="/webtoeic/listening">Luyện bài nghe</a></li>
-										<li class="myli"><a href="/webtoeic/reading">Luyện bài đọc</a> <br></li>
-										<li class="myli"><a href="/webtoeic/listExam">Bài thi thử</a></li>
-										<li class="myli"><a href="/webtoeic/listGrammar">Học ngữ pháp</a></li>
-										<li class="myli"><a href="/webtoeic/listVocab">Học từ vựng</a></li>
-									</ul>
-								</td>
-							</tr>
-						</table>
-						
-					</div>-->
+					<div th:replace="client/include/sidebar::sidebar"> </div>	
 				</div>
 			</div>
 
@@ -198,15 +178,15 @@
 			
 				<div class="pagination">
 					
-					<a class="page" style ="background-color: gray;" th:if="${listData.size() != 0}" th:href="@{/listVocab?page=}+${currentPage-1}">Back</a>
-					<a  th:if="${currentPage == 1}"class="current page">1</a>
+					<!--<a class="page" style ="background-color: gray;" th:if="${listData.size() != }" th:href="@{/listVocab?page=}+${currentPage-1}">Back</a>
+				-->	<a  th:if="${currentPage == 1}"class="current page">1</a>
 					<a class="page" th:if ="${currentPage != 1}" th:href="@{/listVocab?page=1}">1</a>
 					<th:block th:each="pag : ${pageList}">
 						<a th:if ="${currentPage == pag}"  class="active current page" th:text="${pag}"></a>
 						<a th:if ="${currentPage != pag}" th:href="@{/listVocab?page=}+${pag}" th:text="${pag}"></a>
 					</th:block>
-					<a style ="background-color: gray;" th:if="${currentPage != totalPage}" th:href="@{/listVocab?page=}+${currentPage+1}" class="pageNext page">Next</a>
-
+					<!--<a style ="background-color: gray;" th:if="${currentPage != totalPage}" th:href="@{/listVocab?page=}+${currentPage+1}" class="pageNext page">Next</a>
+-->
 				</div>
 			</th:block>
 			

@@ -18,10 +18,18 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 	<script th:src="@{/js/admin/quanLyVocab.js}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	 	<link th:href="@{/css/adminheader.css}" rel="stylesheet" />
+
+		<style type="text/css">
+			.center {
+			text-align: center;
+		}
+		</style>
 </head>
 
 <script>
@@ -68,10 +76,10 @@
 			<table class="table table-hover nhanHieuTable" id="tableVocab">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Tên bài Vocab </th>
-						<th>Ảnh</th>
-						<th></th>
+						<th class="center">ID</th>
+						<th class="center">Tên bài Vocab </th>
+						<th class="center">Ảnh</th>
+						<th class="center">Thao tác</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -67,6 +67,32 @@
 	</style>
 </head>
 
+<script>
+
+    function showMyImage(fileInput) {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var imageType = /image.*/;
+            if (!file.type.match(imageType)) {
+                continue;
+            }
+            var img = document.getElementById("previewImage");
+            img.file = file;
+
+            var reader = new FileReader();
+            reader.onload = (function (aImg) {
+                return function (e) {
+                    aImg.src = e.target.result;
+                };
+            })(img);
+            reader.readAsDataURL(file);
+        }
+    }
+
+
+</script>
+
 <body>
 	<header>
 		<div th:replace="admin/include/header::header"> </div>
@@ -108,7 +134,7 @@
 					<tr>
 						<th class="center">ID</th>
 						<th class="center">Tên</th>
-						<th class="center">Ảnh</th>
+						<th class="center">Thao tác</th>
 						
 					</tr>
 				</thead>
@@ -150,10 +176,10 @@
 							<div class="form-group col-md-6">
 								<label for="PostImage">Hình ảnh:</label>
 								<input type="file" title="Click to upload image" class="form-control"
-									id="file_imagePost" name="file_imagePost" accept="image/*"
-									onchange="showMyImage(this)" required />
+									id="file_imagePost" name="file_imagePost" accept="image/*">
+									<!-- onchange="showMyImage(this)" required /> -->
 								
-								<img alt="" src="" class="" id="previewImage" style="height: 100px; width: 150px">
+								<!-- <img alt="" src="/static/file/images/post/" class="" id="previewImage" style="height: 100px; width: 150px"> -->
 							</div>
 							<div class="form-group col-md-12">
 								<label for="contenPost">Nội dung:</label>

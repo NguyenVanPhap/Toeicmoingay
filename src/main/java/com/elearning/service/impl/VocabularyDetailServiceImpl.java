@@ -19,12 +19,14 @@ public class VocabularyDetailServiceImpl implements VocabularyDetailService {
 	public void save(VocabularyContent vocabularycontent) {
 		vocabularydetailrepository.save(vocabularycontent);
 	}
+
 	@Override
 	public void delete(Integer id) {
-        vocabularydetailrepository.deleteById(id);
-    }
-    @Override
-    public List<VocabularyContent> getListVocabulary(Vocabulary vocabulary) {
-        return vocabularydetailrepository.findByVocabulary(vocabulary);
-    }
+		vocabularydetailrepository.deleteById(id);
+	}
+
+	@Override
+	public List<VocabularyContent> getListVocabulary(Vocabulary vocabulary) {
+		return vocabularydetailrepository.findByVocabulary(vocabulary);
+	}
 }

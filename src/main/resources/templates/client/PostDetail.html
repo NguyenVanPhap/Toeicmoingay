@@ -4,7 +4,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title th:text="${baigrammar.getGrammarName()}"></title>
+	<title th:text="${baipost.getName()}"></title>
 
 
 
@@ -36,7 +36,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 		
-	<script th:src="@{/js/client/commentgrammar.js}"></script>
+	<script th:src="@{/js/client/commentpost.js}"></script>
 	<script th:src="@{/js/client/momentcmt.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
 	<style type="text/css">
@@ -60,7 +60,7 @@
 		.box{
 			box-shadow: 0 0 0 1px;
 			border-radius: 10px;
-			width: 90%;
+			width: 70%;
 		}
 		.avatar{
 			width: 10%;
@@ -75,44 +75,6 @@
 			width: 110px;
 		}
 	</style>
-
-	<!--<script type="text/javascript">
-		$(document).ready(function () {
-			//comment grammar			
-			$('#btnComment').click(function () {
-
-				var test = $("#contentComment").val();
-				var grammarid = $("#id_bai_grammar").val();
-				var baseUrl = $('#baseUrl').val();
-
-				$.ajax({
-					dataType: "json",
-					type: 'POST',
-					url: baseUrl + "/grammar/ajaxCmtGram/" + test + "/" + grammarid,
-
-					success: function (result) {
-
-						var obj = JSON.parse(result);
-
-						var name = "<h4 style='color:red'>" + obj.nguoidung + "</h4> ";
-						var content = "<textarea disabled class='input-xxlarge showtext' rows='3' name='cmtgrammarcontent' >" + obj.cmtgrammarcontent + "</textarea>";
-
-						$('#listcomment').append(name);
-						$('#listcomment').append(content);
-
-					},
-					error: function (e) {
-						alert("error");
-						console.log("ERROR: ", e);
-					}
-				});
-
-			});
-
-		});
-	</script>-->
-
-
 </head>
 
 <body>
@@ -127,19 +89,19 @@
 	<!-- Page container -->
 
 	<div class="container mybackground">
-		<!--PAGE TITLE-->
+		<!-- PAGE TITLE-->
 
-		<div class="row">
-			<!-- <div class="span12">
+		<!-- <div class="row">
+			<div class="span12">
 				<div class="page-header">
-					<h4 class="pagetitle">Bài hướng dẫn học ngữ pháp</h4>
+					<h4 class="pagetitle" th:text="${baipost.getName()}"></h4>
 				</div>
-			</div> -->
+			</div>
 
-			<a class="hidden" id="currentgrammar" th:text="${baigrammar.getGrammarId()}" th:value="${baigrammar.getGrammarId()}"></a>
-		</div>
+			<a class="hidden" id="currentpost" th:text="${baipost.getPostId()}" th:value="${baipost.getPostId()}"></a>
+		</div> -->
 
-		<!-- /. PAGE TITLE-->
+		<!-- /. PAGE TITLE -->
 
 
 
@@ -149,18 +111,19 @@
 
 			<div class="col-sm-9">
 				<div class="blog-post">
-					<h2 style="text-align: center; color: #b10021;" th:text="${baigrammar.getGrammarName()}">Chủ đề:</h2>
+					<h2 style="text-align: center; color: #b10021;" th:text="${baipost.getName()}"></h2>
 
 
-					<div class="postmetadata">
-						<!--<ul>
+					<!-- <div class="postmetadata">
+						<ul>
 							<li><i class="icon-user"></i> <a href="#">IT-HCMUTE</a></li>
 							<li><i class="icon-calendar"></i><a href="#">October, 2021</a></li>
-						</ul>-->
+						</ul>
 					</div>
+						<img src="@{/images/vocabulary.jpg}" style="height: 330px; width: 870px"> -->
 					<div class="row" style="text-align: justify;">
 						<div class="span3"></div>
-						<div class="span9" th:utext="${baigrammar.getContentHTML()}"></div>
+						<div class="span9" th:utext="${baipost.getContentHTML()}"></div>
 
 					</div>
 				</div>
@@ -198,7 +161,7 @@
 		</th:block>
 		<th:block sec:authorize="isAuthenticated()">
 			<!--  	<input type="hidden" id="user_id" name="user_id" value="${currentUser.id}"/> -->
-			<input type="hidden" id="id_bai_grammar" th:value="${baigrammar.getGrammarId()}" />
+			<input type="hidden" id="id_bai_post" th:value="${baipost.getPostId()}" />
 
 			<div class="blog-spot">
 				<div>
@@ -222,8 +185,8 @@
 
 	<div class="row">
 		<div class="col-md-10">
-			<table class="table table-hover " id="tableGrammar">
-				<tbody id="lstcommentgrammar">
+			<table class="table table-hover " id="tablepost">
+				<tbody id="lstcommenpost">
 				</tbody>
 			</table>
 		</div>

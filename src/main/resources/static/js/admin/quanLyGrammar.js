@@ -204,7 +204,7 @@ $(document).ready(function() {
 				$('#grammarModal #idGrammarModal').val(idBaiGrammar);
 				modal.find('.modal-body #nameGrammar').val(data.object.grammarName);
 				modal.find('.modal-header #titleModal').text("Cập nhật bài ngữ pháp");
-				// modal.find('.modal-body #previewImage').attr('src', data.object.file_image);
+				modal.find('.modal-body #previewImage').attr('src', data.object.file_image);
 				modal.find('.modal-body #myckeditor').val(data.object.contentHTML);
 				CKEDITOR.instances['myckeditor'].setData(data.object.contentHTML);
 				console.log(data.object.contentHTML);

@@ -35,7 +35,7 @@ public class DataSeeder implements ApplicationListener<ContextRefreshedEvent> {
 		// Member account
 		if (userRepository.findByEmail("member@gmail.com") == null) {
 			NguoiDung member = new NguoiDung();
-			member.setHoTen("Nguyễn Văn Pháp");
+			member.setHoTen("Đoàn Lê Bình An");
 			member.setSoDienThoai("123456789");
 			member.setEmail("member@gmail.com");
 			member.setPassword(passwordEncoder.encode("123456"));

@@ -2,6 +2,7 @@
 package com.elearning.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -58,6 +59,11 @@ public class CourseServiceImpl implements CourseService {
 		return apiRes;
 	}
 
+	@Override
+	public Course getCourseId(int id) {
+		List<Course> lstVocabs = courseRepo.findByCourseid(id);
+		return lstVocabs.get(0);
+	}
 	/*
 	 * @Override public List<KhoaHoc> searchListKhoaHoc(String search) { return
 	 * khoaHocRepo.searchGrammar(search);

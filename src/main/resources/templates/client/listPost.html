@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Danh sách bài Blog chia sẻ</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+	<!-- progress barstle -->
+	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
+	<!-- fonts style -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- font wesome stylesheet -->
+	<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css}">
+	<!-- Custom styles for this template -->
+	<!-- responsive style -->
+	<link th:href="@{/css/responsive.css}" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
+
+	<link rel="stylesheet" th:href="@{/css/header/header.css}">
+
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+	<script th:src="@{/js/jquery-1.js}"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+
+	<link th:href="@{/css/course.css}" rel="stylesheet" />
+	<!--<link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" media="screen">-->
+	<link rel='stylesheet' id='camera-css' th:href='@{/css/camera.css}' type='text/css' media='all'>
+	<style type="text/css">
+		.imagePost{
+			float: left;
+			height: 50%;
+			margin-bottom: 25px;
+		}
+		.pagination {
+			display: inline-block;
+		}
+
+		.pagination a {
+			color: black;
+			float: left;
+			padding: 8px 16px;
+			text-decoration: none;
+			transition: background-color .3s;
+			border: 1px solid #ddd;
+			margin: 0 4px;
+		}
+
+		.pagination a.active {
+			background-color: #4CAF50;
+			color: white;
+			border: 1px solid #4CAF50;
+		}
+
+		.pagination a:hover:not(.active) {
+			background-color: #ddd;
+		}
+
+		.myparent {
+			white-space: nowrap;
+		}
+
+		.mychild {
+			display: inline;
+			float: left;
+			padding-right: 2%
+		}
+
+		.mybackground {
+			background-color: #ffffff;
+		}
+	</style>
+</head>
+
+<body>
+	<div th:replace="client/include/header::header"> </div>
+
+	<section class="news-box top-margin">
+		<div class="container">
+			<h2><span>Bài viết</span></h2>
+			<div class="row">
+
+				<th:block th:each="list : ${listData}">
+					<div class="col-lg-4 col-md-4 col-sm-12">
+						<div class="newsBox">
+							<div class="thumbnail">							
+								<div class="caption maxheight2">
+									<div class="box_inner">
+										<div class="box">
+											<p class="title">
+											<img class="imagePost" th:src="@{/static/file/images/post/}+${list.getImage()}">
+											<h5> <a th:href="@{/detailPost?idPost=}+${list.getPostId()}"
+													th:text="${list.getName()}"></a></h5>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</th:block>
+			</div>
+			<div class="row">
+				<!--Pagination-->
+				<th:block th:if="${listData.size() != 0}">
+				
+					<div class="pagination">
+						
+						<a class="page" style ="background-color: gray;" th:if="${listData.size() != 0}" th:href="@{/listPost?page=}+${currentPage-1}">Back</a>
+						<a  th:if="${currentPage == 1}"class="current page">1</a>
+						<a class="page" th:if ="${currentPage != 1}" th:href="@{/listPost?page=1}">1</a>
+						<th:block th:each="pag : ${pageList}">
+							<a th:if ="${currentPage == pag}"  class="active current page" th:text="${pag}"></a>
+							<a th:if ="${currentPage != pag}" th:href="@{/listPost?page=}+${pag}" th:text="${pag}"></a>
+						</th:block>
+						<a style ="background-color: gray;" th:if="${currentPage != totalPage}" th:href="@{/listPost?page=}+${currentPage+1}" class="pageNext page">Next</a>
+
+					</div>
+				</th:block>
+			</div>
+		</div>
+	</section>
+
+	<!-- footer section -->
+	<section class="">
+		<div th:replace="client/include/footer::footer"> </div>
+	</section>
+	<!-- footer section -->
+	<script src="assets/js/modernizr-latest.js"></script>
+	<script type='text/javascript' th:src='@{/js/course/jquery.min.js}'></script>
+	<script type='text/javascript' th:src='@{/js/course/fancybox/jquery.fancybox.pack.js}'></script>
+	<script type='text/javascript' th:src='@{/js/course/jquery.mobile.customized.min.js}'></script>
+	<script type='text/javascript' th:src='@{/js/course/jquery.easing.1.3.js}'></script>
+	<script type='text/javascript' th:src='@{/js/course/camera.min.js}'></script>
+	<script src="assets/js/custom.js"></script>
+	<script>
+		jQuery(function () {
+
+			jQuery('#camera_wrap_4').camera({
+				transPeriod: 500,
+				time: 3000,
+				height: '600',
+				loader: 'false',
+				pagination: true,
+				thumbnails: false,
+				hover: false,
+				playPause: false,
+				navigation: false,
+				opacityOnGrid: false,
+				imagePath: 'images/'
+			});
+
+		});
+
+	</script>
+</body>
+
+</html>

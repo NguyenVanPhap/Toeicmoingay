@@ -42,13 +42,13 @@
 				class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 				<div class="container">
 
-					<form action="#" class="searchform order-sm-start order-lg-last">
+				<!--	<form action="#" class="searchform order-sm-start order-lg-last">
 						<div class="form-group d-flex">
 							<input type="text" class="form-control pl-3" placeholder="Search">
 							<button type="submit" placeholder="" class="form-control search"><span
 									class="fa fa-search"></span></button>
 						</div>
-					</form>
+					</form>-->
 					<div class="order-lg-last">
 						<th:block sec:authorize="isAnonymous()">
 							<ul class="navbar-nav m-auto">
@@ -90,10 +90,10 @@
 								<div class="dropdown-menu" aria-labelledby="dropdown04">
 									<a class="dropdown-item" th:href="@{/listVocab}">Từ vựng Toeic</a>
 									<a class="dropdown-item" th:href="@{/listGrammar}">Ngữ pháp Toeic</a>
-
 								</div>
 							</li>
 							<li class="nav-item"><a th:href="@{/course}" class="nav-link">Khóa học</a></li>
+							<li class="nav-item"><a th:href="@{/listPost}" class="nav-link">Blog</a></li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="dropdownstest" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false">Test online</a>

@@ -24,4 +24,5 @@ public interface CourseService {
 
 	/* List<KhoaHoc> searchKhoaHoc(String search); */
 
+	Course getCourseId(int id);
 }
