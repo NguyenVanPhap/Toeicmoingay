@@ -86,8 +86,7 @@ public class AdminController {
 
 	@GetMapping("/vocab")
 	public String quanLyVocab(Model model) {
-		model.addAttribute("listVocab", baitaptuvungService.findAll());
-		model.addAttribute("vocabbulary", new Vocabulary());
+		
 		return "admin/quanLyVocab";
 
 	}
